@@ -15,21 +15,27 @@ namespace CheckoutKata
     public class Checkout : ICheckout
     {
         private readonly List<InventoryItem> _inventory;
-        private string _basket;
+        private List<string> _basket;
 
         public Checkout(List<InventoryItem> inventory)
         {
+            _basket = new List<string>();
             _inventory = inventory;
         }
 
         public void Scan(string item)
         {
-            _basket = item;
+            _basket.Add(item);
         }
 
         public int GetTotalPrice()
         {
-            return _inventory.First(i => i.Sku == _basket).Price;
+            var total = 0;
+            foreach (var sku in _basket)
+            {
+                total += _inventory.First(i => i.Sku == sku).Price;
+            }
+            return total;
         }
     }
 }
