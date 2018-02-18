@@ -32,8 +32,6 @@ namespace CheckoutKata
 
         public int GetTotalPrice()
         {
-            var total = 0;
-
             var distinctBasketItems = _basket.GroupBy(sku => sku)
                 .Select(grp => new
                 {
@@ -41,12 +39,7 @@ namespace CheckoutKata
                     Count = grp.Count()
                 });
 
-            foreach (var itemGroup in distinctBasketItems)
-            {
-                total += CalculateDistinctPrice(itemGroup.Sku, itemGroup.Count);
-            }
-
-            return total;
+            return distinctBasketItems.Sum(itemGroup => CalculateDistinctPrice(itemGroup.Sku, itemGroup.Count));
         }
 
         private int CalculateDistinctPrice(string sku, int itemCount)
