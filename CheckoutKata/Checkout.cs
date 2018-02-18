@@ -40,7 +40,18 @@ namespace CheckoutKata
 
         public int CalculateDistinctPrice(string sku, int itemCount)
         {
-            return 130;
+            var offers = new List<Tuple<string, int, int>>
+            {
+                new Tuple<string, int, int>("A", 3, 130),
+                new Tuple<string, int, int>("B", 2, 45)
+            };
+
+            var matchingOffer = offers.First(o => o.Item1 == sku);
+
+            var offerApplyCount = itemCount / matchingOffer.Item2;
+
+            return offerApplyCount * matchingOffer.Item3;
+
         }
     }
 }
