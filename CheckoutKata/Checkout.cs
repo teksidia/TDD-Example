@@ -15,12 +15,14 @@ namespace CheckoutKata
     public class Checkout : ICheckout
     {
         private readonly List<InventoryItem> _inventory;
-        private List<string> _basket;
+        private readonly List<Offer> _offers;
+        private readonly List<string> _basket;
 
-        public Checkout(List<InventoryItem> inventory)
+        public Checkout(List<InventoryItem> inventory, List<Offer> offers)
         {
             _basket = new List<string>();
             _inventory = inventory;
+            _offers = offers;
         }
 
         public void Scan(string item)
@@ -40,13 +42,7 @@ namespace CheckoutKata
 
         public int CalculateDistinctPrice(string sku, int itemCount)
         {
-            var offers = new List<Offer>
-            {
-                new Offer("A", 3, 130),
-                new Offer("B", 2, 45)
-            };
-
-            var matchingOffer = offers.First(o => o.Sku == sku);
+            var matchingOffer = _offers.First(o => o.Sku == sku);
             var offerApplyCount = itemCount / matchingOffer.AmountNeeded;
             return offerApplyCount * matchingOffer.Price;
         }

@@ -12,6 +12,7 @@ namespace CheckoutKata.UnitTests
     public class CheckoutTests
     {
         private List<InventoryItem> _inventory;
+        private List<Offer> _offers;
 
         [SetUp]
         public void SetUp()
@@ -22,6 +23,12 @@ namespace CheckoutKata.UnitTests
                 new InventoryItem("B", 30),
                 new InventoryItem("C", 20),
                 new InventoryItem("D", 15)
+            };
+
+            _offers = new List<Offer>
+            {
+                new Offer("A", 3, 130),
+                new Offer("B", 2, 45)
             };
         }
 
@@ -35,7 +42,7 @@ namespace CheckoutKata.UnitTests
         {
             // Arrange
 
-            var checkout = new Checkout(_inventory);
+            var checkout = new Checkout(_inventory, _offers);
 
             // Act
 
@@ -57,7 +64,7 @@ namespace CheckoutKata.UnitTests
         {
             // Arrange
 
-            var checkout = new Checkout(_inventory);
+            var checkout = new Checkout(_inventory, _offers);
 
             // Act
 
