@@ -60,6 +60,7 @@ namespace CheckoutKata.UnitTests
 
         [TestCase("A", 3, 130)]
         [TestCase("B", 2, 45)]
+        [TestCase("A", 4, 180)]
         public void CalculateDistinctPrice_ShouldReturnTotalWithDiscount(string sku, int quantity, int expectedTotal)
         {
             // Arrange
