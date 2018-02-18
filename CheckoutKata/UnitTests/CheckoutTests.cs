@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -11,11 +12,11 @@ namespace CheckoutKata.UnitTests
     public class CheckoutTests
     {
         [Test]
-        public void GetTotalPrice_ShouldReturnTotal()
+        public void GetTotalPrice_ShouldReturnTotalForNonDiscountedItems()
         {
             // Arrange
 
-            var checkout = new Checkout();
+            var checkout = new Checkout(new List<InventoryItem>() { new InventoryItem("A", 50) });
 
             // Act
 
