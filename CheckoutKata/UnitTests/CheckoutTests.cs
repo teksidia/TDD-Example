@@ -39,7 +39,7 @@ namespace CheckoutKata.UnitTests
         [TestCase("A,B", 80)]
         [TestCase("C,D", 35)]
         [TestCase("A,A,A", 130)]
-        public void GetTotalPrice_ShouldReturnTotalForNonDiscountedItems(string basketItems, int expectedTotal)
+        public void GetTotalPrice_ShouldReturnTotal(string basketItems, int expectedTotal)
         {
             // Arrange
 

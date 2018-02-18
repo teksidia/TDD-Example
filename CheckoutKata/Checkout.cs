@@ -33,10 +33,19 @@ namespace CheckoutKata
         public int GetTotalPrice()
         {
             var total = 0;
-            foreach (var sku in _basket)
+
+            var distinctBasketItems = _basket.GroupBy(sku => sku)
+                .Select(grp => new
+                {
+                    Sku = grp.Key,
+                    Count = grp.Count()
+                });
+
+            foreach (var itemGroup in distinctBasketItems)
             {
-                total += CalculateDistinctPrice(sku, 1);
+                total += CalculateDistinctPrice(itemGroup.Sku, itemGroup.Count);
             }
+
             return total;
         }
 
