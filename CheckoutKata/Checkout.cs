@@ -49,7 +49,7 @@ namespace CheckoutKata
             return total;
         }
 
-        public int CalculateDistinctPrice(string sku, int itemCount)
+        private int CalculateDistinctPrice(string sku, int itemCount)
         {
             var normalPrice = _inventory.First(i => i.Sku == sku).Price;
             var matchingOffer = _offers.FirstOrDefault(o => o.Sku == sku) ?? new Offer(sku, 1, normalPrice);

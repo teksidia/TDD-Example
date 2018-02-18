@@ -39,6 +39,9 @@ namespace CheckoutKata.UnitTests
         [TestCase("A,B", 80)]
         [TestCase("C,D", 35)]
         [TestCase("A,A,A", 130)]
+        [TestCase("B,B", 45)]
+        [TestCase("A,A,A,A", 180)]
+        [TestCase("B,A,B", 95)]
         public void GetTotalPrice_ShouldReturnTotal(string basketItems, int expectedTotal)
         {
             // Arrange
@@ -53,24 +56,6 @@ namespace CheckoutKata.UnitTests
             }
 
             var result = checkout.GetTotalPrice();
-
-            // Assert
-
-            Assert.AreEqual(expectedTotal, result);
-        }
-
-        [TestCase("A", 3, 130)]
-        [TestCase("B", 2, 45)]
-        [TestCase("A", 4, 180)]
-        public void CalculateDistinctPrice_ShouldReturnTotalWithDiscount(string sku, int quantity, int expectedTotal)
-        {
-            // Arrange
-
-            var checkout = new Checkout(_inventory, _offers);
-
-            // Act
-
-            var result = checkout.CalculateDistinctPrice(sku, quantity);
 
             // Assert
 
