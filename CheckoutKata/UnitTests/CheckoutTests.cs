@@ -24,7 +24,7 @@ namespace CheckoutKata.UnitTests
 
             // Assert
 
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(50, result);
         }
     }
 }
