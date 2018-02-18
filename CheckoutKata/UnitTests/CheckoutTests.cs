@@ -31,7 +31,7 @@ namespace CheckoutKata.UnitTests
         [TestCase("D", 15)]
         [TestCase("A,B", 80)]
         [TestCase("C,D", 35)]
-        public void GetTotalPrice_ShouldReturnTotalForNonDiscountedItems(string sku, int expectedTotal)
+        public void GetTotalPrice_ShouldReturnTotalForNonDiscountedItems(string basketItems, int expectedTotal)
         {
             // Arrange
 
@@ -39,7 +39,11 @@ namespace CheckoutKata.UnitTests
 
             // Act
 
-            checkout.Scan(sku);
+            foreach (var item in basketItems.Split(','))
+            {
+                checkout.Scan(item);
+            }
+
             var result = checkout.GetTotalPrice();
 
             // Assert
