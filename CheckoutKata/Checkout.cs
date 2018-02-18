@@ -35,16 +35,18 @@ namespace CheckoutKata
             var total = 0;
             foreach (var sku in _basket)
             {
-                total += _inventory.First(i => i.Sku == sku).Price;
+                total += CalculateDistinctPrice(sku, 1);
             }
             return total;
         }
 
         public int CalculateDistinctPrice(string sku, int itemCount)
         {
-            var matchingOffer = _offers.First(o => o.Sku == sku);
+            var normalPrice = _inventory.First(i => i.Sku == sku).Price;
+            var matchingOffer = _offers.FirstOrDefault(o => o.Sku == sku) ?? new Offer(sku, 1, normalPrice);
             var offerApplyCount = itemCount / matchingOffer.AmountNeeded;
-            return offerApplyCount * matchingOffer.Price;
+            var nonDiscountedCount = itemCount % matchingOffer.AmountNeeded;
+            return (offerApplyCount * matchingOffer.Price) + (nonDiscountedCount * normalPrice);
         }
     }
 }
