@@ -11,21 +11,38 @@ namespace CheckoutKata.UnitTests
     [TestFixture]
     public class CheckoutTests
     {
-        [Test]
-        public void GetTotalPrice_ShouldReturnTotalForNonDiscountedItems()
+        private List<InventoryItem> _inventory;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _inventory = new List<InventoryItem>
+            {
+                new InventoryItem("A", 50),
+                new InventoryItem("B", 30),
+                new InventoryItem("C", 20),
+                new InventoryItem("D", 15)
+            };
+        }
+
+        [TestCase("A", 50)]
+        [TestCase("B", 30)]
+        [TestCase("C", 20)]
+        [TestCase("D", 15)]
+        public void GetTotalPrice_ShouldReturnTotalForNonDiscountedItems(string sku, int expectedTotal)
         {
             // Arrange
 
-            var checkout = new Checkout(new List<InventoryItem>() { new InventoryItem("A", 50) });
+            var checkout = new Checkout(_inventory);
 
             // Act
 
-            checkout.Scan("A");
+            checkout.Scan(sku);
             var result = checkout.GetTotalPrice();
 
             // Assert
 
-            Assert.AreEqual(50, result);
+            Assert.AreEqual(expectedTotal, result);
         }
     }
 }
