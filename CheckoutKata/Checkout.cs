@@ -15,6 +15,7 @@ namespace CheckoutKata
     public class Checkout : ICheckout
     {
         private readonly List<InventoryItem> _inventory;
+        private string _basket;
 
         public Checkout(List<InventoryItem> inventory)
         {
@@ -23,12 +24,12 @@ namespace CheckoutKata
 
         public void Scan(string item)
         {
-            
+            _basket = item;
         }
 
         public int GetTotalPrice()
         {
-            return _inventory.First(i => i.Sku == "A").Price;
+            return _inventory.First(i => i.Sku == _basket).Price;
         }
     }
 }
