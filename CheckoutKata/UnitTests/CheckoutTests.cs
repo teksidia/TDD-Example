@@ -50,5 +50,21 @@ namespace CheckoutKata.UnitTests
 
             Assert.AreEqual(expectedTotal, result);
         }
+
+        [Test]
+        public void CalculateDistinctPrice_ShouldReturnTotalWithDiscount()
+        {
+            // Arrange
+
+            var checkout = new Checkout(_inventory);
+
+            // Act
+
+            var result = checkout.CalculateDistinctPrice("A", 3);
+
+            // Assert
+
+            Assert.AreEqual(130, result);
+        }
     }
 }

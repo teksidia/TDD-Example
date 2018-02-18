@@ -37,5 +37,10 @@ namespace CheckoutKata
             }
             return total;
         }
+
+        public int CalculateDistinctPrice(string sku, int itemCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
