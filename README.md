@@ -1,4 +1,4 @@
-# LateRooms Technical Test
+# TDD Example
 
 This was completed using Visual Studio 2017, using C# and NUnit.
 
@@ -8,9 +8,9 @@ I adopted a TDD approach to solving this Kata.
 
 I took small "baby steps" to construct the code and a Red, Green, Refactor test rhythm.
 
-## Disclaimer
+## Notes
 
-I've actually done this Kata many times before and have even used it to teach others the techniques of TDD.
+I've done this Kata many times before and have used it to teach others the techniques of TDD.
 
 The surprising thing is I do it differently every time which I suppose is the genius of Katas!
 
